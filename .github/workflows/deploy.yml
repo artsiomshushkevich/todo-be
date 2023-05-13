@@ -18,7 +18,10 @@ jobs:
           host: ${{secrets.VPS_HOST}}
           username: ${{secrets.VPS_USER}}
           key: ${{secrets.VPS_KEY}}
-          script: whoami
+          script: |
+            docker pull shushman/finance-be:latest
+            docker rm -f finance-be  &>/dev/null && echo 'Finance BE container stopped and removed!'
+            docker run -d --name finance-be -p 3000:3000 shushman/finance-be:latest
 
   failure:
     runs-on: ubuntu-latestma
