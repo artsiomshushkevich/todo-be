@@ -1,10 +1,11 @@
 name: Deploy to Docker hub
 
-workflow_run:
-  workflows: ['Code quality gates']
-  types:
-    - completed
-  branches: ['main']
+on:
+  workflow_run:
+    workflows: ['Code quality gates']
+    types:
+      - completed
+    branches: ['main']
 
 jobs:
   success:
