@@ -1,0 +1,7 @@
+node_modules
+npm-debug.log
+.vscode
+.git
+README.md
+test
+**/*.spec.ts
