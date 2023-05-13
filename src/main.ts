@@ -5,7 +5,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   await app.listen(3000);
 
-  console.log(`App is running on port 3000`);
+  console.log(`Finance app is running on port 3000`);
 }
 
 bootstrap();
