@@ -11,7 +11,7 @@ COPY . .
 
 RUN npm run build
 
-RUN npm prune --only=production
+RUN npm prune --omit=dev
 
 # main stage
 FROM gcr.io/distroless/nodejs16-debian11 AS main
