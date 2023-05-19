@@ -1,0 +1,26 @@
+# build stage
+FROM node:16-slim AS build
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm ci
+
+COPY . .
+
+RUN npm run build
+
+RUN npm prune --omit=dev
+
+# main stage
+FROM gcr.io/distroless/nodejs16-debian11 AS main
+
+WORKDIR /app
+
+COPY --from=build /app/node_modules/ /app/node_modules/ 
+COPY --from=build /app/dist/ /app/
+
+EXPOSE 3000
+
+CMD ["main.js"]
