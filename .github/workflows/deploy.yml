@@ -1,33 +1,36 @@
 name: Deploy to VPS
 
 on:
-  workflow_run:
-    workflows: ['Publish to Docker hub']
-    types:
-      - completed
-    branches: ['main']
+    workflow_run:
+        workflows: ['Publish to Docker hub']
+        types:
+            - completed
+        branches: ['main']
+    strategy:
+        matrix:
+            node-version: [16.x]
 
 jobs:
-  success:
-    runs-on: ubuntu-latest
+    success:
+        runs-on: ubuntu-latest
 
-    if: ${{github.event.workflow_run.conclusion == 'success'}}
-    steps:
-      - uses: appleboy/ssh-action@v0.1.10
-        with:
-          host: ${{secrets.VPS_HOST}}
-          username: ${{secrets.VPS_USER}}
-          key: ${{secrets.VPS_KEY}}
-          script: |
-            docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
-            docker pull shushman/finance-be:latest
-            docker rm -f finance-be  &>/dev/null && echo 'Finance BE container stopped and removed!'
-            docker run -d --name finance-be -p 3000:3000 shushman/finance-be:latest
+        if: ${{github.event.workflow_run.conclusion == 'success'}}
+        steps:
+            - uses: appleboy/ssh-action@v0.1.10
+              with:
+                  host: ${{secrets.VPS_HOST}}
+                  username: ${{secrets.VPS_USER}}
+                  key: ${{secrets.VPS_KEY}}
+                  script: |
+                      docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
+                      docker pull shushman/finance-be:latest
+                      docker rm -f finance-be  &>/dev/null && echo 'Finance BE container stopped and removed!'
+                      docker run -d --name finance-be -p 3000:3000 shushman/finance-be:latest
 
-  failure:
-    runs-on: ubuntu-latestma
+    failure:
+        runs-on: ubuntu-latestma
 
-    if: ${{github.event.workflow_run.conclusion == 'failure'}}
-    steps:
-      - run: echo 'The triggering workflow failed'
-      - run: exit 1
+        if: ${{github.event.workflow_run.conclusion == 'failure'}}
+        steps:
+            - run: echo 'The triggering workflow failed'
+            - run: exit 1
