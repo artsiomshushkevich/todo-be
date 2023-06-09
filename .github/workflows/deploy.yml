@@ -1,55 +1,55 @@
 name: Deploy to VPS
 
 on:
-    workflow_run:
-        workflows: ['Publish to Docker hub']
-        types:
-            - completed
-        branches: ['main']
-    strategy:
-        matrix:
-            node-version: [16.x]
+  workflow_run:
+    workflows: ['Publish to Docker hub']
+    types:
+      - completed
+    branches: ['main']
+  strategy:
+    matrix:
+      node-version: [16.x]
 
 jobs:
-    success:
-        runs-on: ubuntu-latest
+  success:
+    runs-on: ubuntu-latest
 
-        if: ${{github.event.workflow_run.conclusion == 'success'}}
-        steps:
-            - uses: actions/checkout@v3
+    if: ${{github.event.workflow_run.conclusion == 'success'}}
+    steps:
+      - uses: actions/checkout@v3
 
-            - name: Copy docker-compose.yml via SSH
-                uses: appleboy/scp-action@v0.1.4
-                with:
-                    host: ${{secrets.VPS_HOST}}
-                    username: ${{secrets.VPS_USER}}
-                    key: ${{secrets.VPS_KEY}}
-                    source: './docker-compose.yml'
-                    target: '~/finance/be'
-                    overwrite: true
+      - name: Copy docker-compose.yml via SSH
+        uses: appleboy/scp-action@v0.1.4
+        with:
+        host: ${{secrets.VPS_HOST}}
+          username: ${{secrets.VPS_USER}}
+          key: ${{secrets.VPS_KEY}}
+          source: './docker-compose.yml'
+          target: '~/finance/be'
+          overwrite: true
 
-            - name: Get all the most recent images and start/restart the app
-                uses: appleboy/ssh-action@v0.1.10
-                with:
-                    host: ${{secrets.VPS_HOST}}
-                    username: ${{secrets.VPS_USER}}
-                    key: ${{secrets.VPS_KEY}}
-                    script: |
-                        cd ~/finance/be
-                        docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
-                        docker compose --profile prod -e POSTGRES_USER=${secrets.POSTGRES_USER} \
-                        -e POSTGRES_PASSWORD=${secrets.POSTGRES_PASSWORD} \
-                        -e POSTGRES_DB=${secrets.POSTGRES_DB} \
-                        -e POSTGRES_PORT=${secrets.POSTGRES_PORT} \
-                        -e POSTGRES_HOST=${secrets.POSTGRES_HOST} \
-                        -e PORT=${secrets.PORT} \
-                        -e NODE_ENV=${secrets.NODE_ENV} \
-                        up --force-recreate \
-                    
-    failure:
-        runs-on: ubuntu-latest
+      - name: Get all the most recent images and start/restart the app
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{secrets.VPS_HOST}}
+          username: ${{secrets.VPS_USER}}
+          key: ${{secrets.VPS_KEY}}
+          script: |
+            cd ~/finance/be
+            docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
+            docker compose --profile prod -e POSTGRES_USER=${secrets.POSTGRES_USER} \
+            -e POSTGRES_PASSWORD=${secrets.POSTGRES_PASSWORD} \
+            -e POSTGRES_DB=${secrets.POSTGRES_DB} \
+            -e POSTGRES_PORT=${secrets.POSTGRES_PORT} \
+            -e POSTGRES_HOST=${secrets.POSTGRES_HOST} \
+            -e PORT=${secrets.PORT} \
+            -e NODE_ENV=${secrets.NODE_ENV} \
+            up --force-recreate \
 
-        if: ${{github.event.workflow_run.conclusion == 'failure'}}
-        steps:
-            - run: echo 'The triggering workflow failed'
-            - run: exit 1
+  failure:
+    runs-on: ubuntu-latest
+
+    if: ${{github.event.workflow_run.conclusion == 'failure'}}
+    steps:`
+      - run: echo 'The triggering workflow failed'
+      - run: exit 1
