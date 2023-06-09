@@ -6,9 +6,6 @@ on:
     types:
       - completed
     branches: ['main']
-  strategy:
-    matrix:
-      node-version: [16.x]
 
 jobs:
   success:
