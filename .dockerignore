@@ -6,10 +6,10 @@ README.md
 test
 **/*.spec.ts
 Dockerfile
-Dockerfile.prod
 docker-compose.yml
 .env
 .prettierrc
 .eslintrc.js
 dbdata
 .github
+.emv.template
