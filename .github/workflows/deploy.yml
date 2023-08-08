@@ -35,7 +35,7 @@ jobs:
             cd ~/finance/be
             docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
             docker compose --profile prod down --rmi all
-            docker compose --env-file ./.env up
+            docker compose --profile prod --env-file ./.env up
 
   failure:
     runs-on: ubuntu-latest
