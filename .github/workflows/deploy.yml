@@ -36,13 +36,14 @@ jobs:
             docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
             docker compose --profile prod down --rmi all
             docker compose --profile prod build --pull
-            docker compose --profile prod run --detach -e POSTGRES_USER=${{secrets.POSTGRES_USER}} \
+            docker compose --profile prod -d -e POSTGRES_USER=${{secrets.POSTGRES_USER}} \
             -e POSTGRES_PASSWORD=${{secrets.POSTGRES_PASSWORD}} \
             -e POSTGRES_DB=${{secrets.POSTGRES_DB}} \
             -e POSTGRES_PORT=${{secrets.POSTGRES_PORT}} \
             -e POSTGRES_HOST=${{secrets.POSTGRES_HOST}} \
             -e PORT=${{secrets.PORT}} \
             -e NODE_ENV=${{secrets.NODE_ENV}} \
+            run \
 
   failure:
     runs-on: ubuntu-latest
