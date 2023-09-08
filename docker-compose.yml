@@ -10,9 +10,9 @@ services:
             target: build-phase-1
         restart: always
         ports:
-            - ${PORT}:3000
+            - 127.0.0.1:${PORT}:3000
             # debugging
-            - 9229:9229
+            - 127.0.0.1:9229:9229
         depends_on:
             - db-dev
         environment:
@@ -35,7 +35,7 @@ services:
         image: shushman/finance-be:latest
         restart: always
         ports:
-            - ${PORT}:3000
+            - 127.0.0.1:${PORT}:3000
         depends_on:
             - db-prod
         environment:
@@ -54,7 +54,7 @@ services:
         image: postgres:15
         restart: always
         ports:
-            - ${POSTGRES_PORT}:5432
+            - 127.0.0.1:${POSTGRES_PORT}:5432
         environment:
             - POSTGRES_USER=${POSTGRES_USER}
             - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
@@ -69,7 +69,7 @@ services:
         image: postgres:15-alpine
         restart: always
         ports:
-            - ${POSTGRES_PORT}:5432
+            - 127.0.0.1:${POSTGRES_PORT}:5432
         environment:
             - POSTGRES_USER=${POSTGRES_USER}
             - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}

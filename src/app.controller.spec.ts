@@ -15,8 +15,8 @@ describe('AppController', () => {
     });
 
     describe('root', () => {
-        it('Should return "Service works!"', () => {
-            expect(appController.ping()).toBe('Service works!');
+        it('Should return "Service is up and running!"', () => {
+            expect(appController.ping()).toBe('Service is up and running!');
         });
     });
 });
