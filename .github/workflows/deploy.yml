@@ -36,6 +36,8 @@ jobs:
             docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
             docker compose --profile prod down --rmi all
             docker compose --profile prod --env-file ./.env up -d
+            cd /usr/share/nginx/html
+            mv maintenance.html under_maintenance.html
 
   failure:
     runs-on: ubuntu-latest
