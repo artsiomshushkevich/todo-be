@@ -1,0 +1,32 @@
+name: Set maintenance page after passed quality gates
+
+on:
+  workflow_run:
+    workflows: ['Code quality gates']
+    types:
+      - completed
+    branches: ['main']
+
+jobs:
+  success:
+    runs-on: ubuntu-latest
+
+    if: ${{github.event.workflow_run.conclusion == 'success'}}
+    steps:
+      - name: Set maintenance page (see nginx configs) by renaming already exiting template page to under_maintenance.html
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{secrets.VPS_HOST}}
+          username: ${{secrets.VPS_USER}}
+          key: ${{secrets.VPS_KEY}}
+          script: |
+            cd /usr/share/nginx/html
+            mv maintenance.html under_maintenance.html
+    
+  failure:
+    runs-on: ubuntu-latest
+
+    if: ${{github.event.workflow_run.conclusion == 'failure'}}
+    steps:
+      - run: echo 'The triggering workflow failed'
+      - run: exit 1

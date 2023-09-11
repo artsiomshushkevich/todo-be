@@ -1,0 +1,32 @@
+name: Unset maintenance page after successful deployment
+
+on:
+  workflow_run:
+    workflows: ['Deploy to VPS']
+    types:
+      - completed
+    branches: ['main']
+
+jobs:
+  success:
+    runs-on: ubuntu-latest
+
+    if: ${{github.event.workflow_run.conclusion == 'success'}}
+    steps:
+      - name: Unset maintenance mode (see nginx configs) by renaming back to template page name (maintenance.html)
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{secrets.VPS_HOST}}
+          username: ${{secrets.VPS_USER}}
+          key: ${{secrets.VPS_KEY}}
+          script: |
+            cd /usr/share/nginx/html
+            mv under_maintenance.html maintenance.html
+    
+  failure:
+    runs-on: ubuntu-latest
+
+    if: ${{github.event.workflow_run.conclusion == 'failure'}}
+    steps:
+      - run: echo 'The triggering workflow failed'
+      - run: exit 1
