@@ -2,7 +2,7 @@ name: Set maintenance page after passed quality gates
 
 on:
   workflow_run:
-    workflows: ['Code quality gates']
+    workflows: ['Quality, build and tag']
     types:
       - completed
     branches: ['main']

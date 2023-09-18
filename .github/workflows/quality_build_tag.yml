@@ -1,4 +1,4 @@
-name: Code quality gates
+name: Quality, build and tag
 
 on:
   push:
@@ -23,3 +23,17 @@ jobs:
       - run: npm run build
       - run: npm run lint
       - run: npm test
+  
+  semver:
+    permissions:
+      contents: write
+      issues: write
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
