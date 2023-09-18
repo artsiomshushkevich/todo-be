@@ -1,6 +1,6 @@
 {
     "name": "finance-be",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "BE for my personal finance app",
     "author": "Artsiom Shushkevich <artemshushkevich@gmail.com>",
     "private": true,
