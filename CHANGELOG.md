@@ -1,3 +1,15 @@
+# [1.3.0](https://github.com/artsiomshushkevich/finance-be/compare/v1.2.1...v1.3.0) (2023-09-18)
+
+
+### Bug Fixes
+
+* Remove semver workflow ([9639077](https://github.com/artsiomshushkevich/finance-be/commit/9639077ffc9ac599b9e21ed9758db960dfd109a2))
+
+
+### Features
+
+* Add back semver as part of build+quality gates workflow ([79b7ae8](https://github.com/artsiomshushkevich/finance-be/commit/79b7ae89d7bdb8c0451eafe23310bcc7f7d7c92c))
+
 ## [1.2.1](https://github.com/artsiomshushkevich/finance-be/compare/v1.2.0...v1.2.1) (2023-09-18)
 
 
