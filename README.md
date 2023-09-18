@@ -2,4 +2,4 @@
 
 ## Description
 
-BE part of todo app
+BE part of todo app written with NestJS,Docker,Postgres
