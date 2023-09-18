@@ -1,5 +1,5 @@
-# finance-be
+# todo app
 
 ## Description
 
-BE part of personal finance app
+BE part of todo app
