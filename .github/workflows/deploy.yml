@@ -8,7 +8,7 @@ on:
     branches: ['main']
 
 jobs:
-  success:
+  success_deploy:
     runs-on: ubuntu-latest
 
     if: ${{github.event.workflow_run.conclusion == 'success'}}
@@ -39,7 +39,7 @@ jobs:
             cd /usr/share/nginx/html
             mv under_maintenance.html maintenance.html
 
-  failure:
+  failure_deploy:
     runs-on: ubuntu-latest
 
     if: ${{github.event.workflow_run.conclusion == 'failure'}}

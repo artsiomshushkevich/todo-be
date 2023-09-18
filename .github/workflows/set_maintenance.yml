@@ -8,7 +8,7 @@ on:
     branches: ['main']
 
 jobs:
-  success:
+  success_set_maintenance:
     runs-on: ubuntu-latest
 
     if: ${{github.event.workflow_run.conclusion == 'success'}}
@@ -23,7 +23,7 @@ jobs:
             cd /usr/share/nginx/html
             mv maintenance.html under_maintenance.html
     
-  failure:
+  failure_set_maintenance:
     runs-on: ubuntu-latest
 
     if: ${{github.event.workflow_run.conclusion == 'failure'}}

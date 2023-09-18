@@ -8,7 +8,7 @@ on:
     branches: ['main']
 
 jobs:
-  success:
+  success_publish_dockerhub:
     runs-on: ubuntu-latest
 
     if: ${{github.event.workflow_run.conclusion == 'success'}}
@@ -18,7 +18,7 @@ jobs:
       - run: docker build . -t ${{secrets.DOCKER_USERNAME}}/finance-be:latest
       - run: docker push ${{secrets.DOCKER_USERNAME}}/finance-be:latest
 
-  failure:
+  failure_publish_dockerhub:
     runs-on: ubuntu-latest
 
     if: ${{github.event.workflow_run.conclusion == 'failure'}}
