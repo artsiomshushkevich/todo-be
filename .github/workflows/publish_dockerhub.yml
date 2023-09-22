@@ -15,8 +15,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
-      - run: docker build . -t ${{secrets.DOCKER_USERNAME}}/finance-be:latest
-      - run: docker push ${{secrets.DOCKER_USERNAME}}/finance-be:latest
+      - run: docker build . -t ${{secrets.DOCKER_USERNAME}}/todo-be:latest
+      - run: docker push ${{secrets.DOCKER_USERNAME}}/todo-be:latest
 
   failure_publish_dockerhub:
     runs-on: ubuntu-latest

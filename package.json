@@ -1,7 +1,7 @@
 {
-    "name": "finance-be",
+    "name": "todo-be",
     "version": "1.0.0",
-    "description": "BE for my personal finance app",
+    "description": "BE for my personal todo app",
     "author": "Artsiom Shushkevich <artemshushkevich@gmail.com>",
     "private": true,
     "license": "UNLICENSED",

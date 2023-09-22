@@ -3,7 +3,7 @@ services:
     app-dev:
         profiles:
             - dev
-        container_name: finance-be-dev
+        container_name: todo-be-dev
         build:
             dockerfile: Dockerfile
             context: .
@@ -31,8 +31,8 @@ services:
     app-prod:
         profiles:
             - prod
-        container_name: finance-be-prod
-        image: shushman/finance-be:latest
+        container_name: todo-be-prod
+        image: shushman/todo-be:latest
         restart: always
         ports:
             - 127.0.0.1:${PORT}:3000
@@ -50,7 +50,7 @@ services:
     db-dev:
         profiles:
             - dev
-        container_name: finance-db-dev
+        container_name: todo-db-dev
         image: postgres:15
         restart: always
         ports:
@@ -65,7 +65,7 @@ services:
     db-prod:
         profiles:
             - prod
-        container_name: finance-db-prod
+        container_name: todo-db-prod
         image: postgres:15-alpine
         restart: always
         ports:
