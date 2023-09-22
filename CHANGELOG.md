@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/artsiomshushkevich/todo-be/compare/v1.3.0...v1.4.0) (2023-09-22)
+
+
+### Features
+
+* Rename repo to todo ([ba2a970](https://github.com/artsiomshushkevich/todo-be/commit/ba2a9703bab30d91c4fd16686b60c72098cae410))
+
 # [1.3.0](https://github.com/artsiomshushkevich/todo-be/compare/v1.2.1...v1.3.0) (2023-09-18)
 
 ### Bug Fixes
