@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/artsiomshushkevich/todo-be/compare/v1.4.0...v1.4.1) (2023-09-23)
+
+
+### Bug Fixes
+
+* Fix tests ([ea73451](https://github.com/artsiomshushkevich/todo-be/commit/ea734514d02d164176c32c266393b7138a0bfcf1))
+
 # [1.4.0](https://github.com/artsiomshushkevich/todo-be/compare/v1.3.0...v1.4.0) (2023-09-22)
 
 
