@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
 import { Todo } from './entities/todo.entity';
-import { User } from 'src/users/users.entity';
+import { User } from '../users/users.entity';
 
 @Injectable()
 export class TodosService {
@@ -35,6 +35,7 @@ export class TodosService {
     }
 
     update(id: number, updateTodoDto: UpdateTodoDto) {
+        console.log(id, updateTodoDto);
         return `This action updates a #${id} todo`;
     }
 
