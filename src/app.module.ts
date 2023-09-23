@@ -4,6 +4,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
+import { TodosModule } from './todos/todos.module';
 
 @Module({
     imports: [
@@ -22,12 +23,15 @@ import { UsersModule } from './users/users.module';
                     database: configService.get('POSTGRES_DB'),
                     host: configService.get('POSTGRES_HOST'),
                     synchronize: true,
-                    autoLoadEntities: true
+                    autoLoadEntities: true,
+                    logging: true
                 };
             }
         }),
 
-        UsersModule
+        UsersModule,
+
+        TodosModule
     ],
     controllers: [AppController],
     providers: [AppService]
