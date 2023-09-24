@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, DataSource } from 'typeorm';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
 import { Todo } from './entities/todo.entity';
@@ -9,8 +9,9 @@ import { User } from '../users/users.entity';
 @Injectable()
 export class TodosService {
     constructor(
-        @InjectRepository(Todo) private todoRepostory: Repository<Todo>,
-        @InjectRepository(User) private userRepository: Repository<User>
+        @InjectRepository(Todo) private todoRepository: Repository<Todo>,
+        @InjectRepository(User) private userRepository: Repository<User>,
+        private dataSource: DataSource
     ) {}
 
     async create(createTodoDto: CreateTodoDto) {
@@ -27,19 +28,25 @@ export class TodosService {
         todo.isChecked = false;
         todo.user = user;
 
-        return this.todoRepostory.save(todo);
+        return this.todoRepository.save(todo);
     }
 
     async findAll(userId: number) {
-        return this.todoRepostory.find({ where: { user: { id: userId } } });
+        return this.todoRepository.find({ where: { user: { id: userId } } });
     }
 
     update(id: number, updateTodoDto: UpdateTodoDto) {
-        console.log(id, updateTodoDto);
-        return `This action updates a #${id} todo`;
+        const { isChecked, todo } = updateTodoDto;
+
+        return this.dataSource
+            .createQueryBuilder()
+            .update(Todo)
+            .set({ isChecked, todo })
+            .where('id = :id', { id: id })
+            .execute();
     }
 
     remove(id: number) {
-        return this.todoRepostory.delete(id);
+        return this.todoRepository.delete(id);
     }
 }

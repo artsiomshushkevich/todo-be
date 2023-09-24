@@ -3,12 +3,10 @@ import {
     Get,
     Post,
     Body,
-    Patch,
+    Put,
     Param,
     Delete,
-    ParseIntPipe,
-    HttpCode,
-    HttpStatus
+    ParseIntPipe
 } from '@nestjs/common';
 import { TodosService } from './todos.service';
 import { CreateTodoDto } from './dto/create-todo.dto';
@@ -24,12 +22,11 @@ export class TodosController {
     }
 
     @Get(':userId')
-    @HttpCode(HttpStatus.CREATED)
     findAll(@Param('userId', ParseIntPipe) userId: number) {
         return this.todosService.findAll(userId);
     }
 
-    @Patch(':id')
+    @Put(':id')
     update(
         @Param('id', ParseIntPipe) id: number,
         @Body() updateTodoDto: UpdateTodoDto
