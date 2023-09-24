@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/artsiomshushkevich/todo-be/compare/v1.4.1...v1.5.0) (2023-09-24)
+
+
+### Features
+
+* Add update API and fix typos ([7d70e79](https://github.com/artsiomshushkevich/todo-be/commit/7d70e796011529e8d880a210101a1aef869d2592))
+
 ## [1.4.1](https://github.com/artsiomshushkevich/todo-be/compare/v1.4.0...v1.4.1) (2023-09-23)
 
 
