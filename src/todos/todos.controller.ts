@@ -11,7 +11,7 @@ import {
 import { TodosService } from './todos.service';
 import { CreateTodoDto } from './dto/createTodo.dto';
 import { UpdateTodoDto } from './dto/updateTodo.dto';
-import { Public } from 'src/auth/public.decorator';
+import { Public } from '../auth/public.decorator';
 
 @Controller('todos')
 export class TodosController {
