@@ -1,3 +1,11 @@
+# [1.6.0](https://github.com/artsiomshushkevich/todo-be/compare/v1.5.0...v1.6.0) (2023-10-20)
+
+
+### Features
+
+* Add basic auth ([5948e45](https://github.com/artsiomshushkevich/todo-be/commit/5948e456b5788e099430ece2f4d7e8fe17fe6885))
+* Add todo validation ([e2c92fd](https://github.com/artsiomshushkevich/todo-be/commit/e2c92fd8ba216ece392c81f3a9a6779bb46b7091))
+
 # [1.5.0](https://github.com/artsiomshushkevich/todo-be/compare/v1.4.1...v1.5.0) (2023-09-24)
 
 
