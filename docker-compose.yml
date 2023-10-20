@@ -23,9 +23,11 @@ services:
             - POSTGRES_HOST=${POSTGRES_HOST}
             - PORT=${PORT}
             - NODE_ENV=${NODE_ENV}
+            - SALT_ROUNDS=${SALT_ROUNDS}
+            - JWT_SECRET=${JWT_SECRET}
+
         volumes:
             - ./src/:/app/src
-            - ./node_modules/:/app/node_modules
         command: npm run start:debug
 
     app-prod:
@@ -46,6 +48,8 @@ services:
             - POSTGRES_HOST=${POSTGRES_HOST}
             - PORT=${PORT}
             - NODE_ENV=${NODE_ENV}
+            - SALT_ROUNDS=${SALT_ROUNDS}
+            - JWT_SECRET=${JWT_SECRET}
 
     db-dev:
         profiles:

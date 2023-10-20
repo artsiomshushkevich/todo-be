@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, DataSource } from 'typeorm';
-import { CreateTodoDto } from './dto/create-todo.dto';
-import { UpdateTodoDto } from './dto/update-todo.dto';
+import { CreateTodoDto } from './dto/createTodo.dto';
+import { UpdateTodoDto } from './dto/updateTodo.dto';
 import { Todo } from './entities/todo.entity';
 import { User } from '../users/users.entity';
 

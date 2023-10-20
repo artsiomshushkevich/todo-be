@@ -5,6 +5,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { TodosModule } from './todos/todos.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
     imports: [
@@ -28,10 +29,9 @@ import { TodosModule } from './todos/todos.module';
                 };
             }
         }),
-
         UsersModule,
-
-        TodosModule
+        TodosModule,
+        AuthModule
     ],
     controllers: [AppController],
     providers: [AppService]

@@ -9,8 +9,9 @@ import {
     ParseIntPipe
 } from '@nestjs/common';
 import { TodosService } from './todos.service';
-import { CreateTodoDto } from './dto/create-todo.dto';
-import { UpdateTodoDto } from './dto/update-todo.dto';
+import { CreateTodoDto } from './dto/createTodo.dto';
+import { UpdateTodoDto } from './dto/updateTodo.dto';
+import { Public } from 'src/auth/public.decorator';
 
 @Controller('todos')
 export class TodosController {
@@ -21,12 +22,14 @@ export class TodosController {
         return this.todosService.create(createTodoDto);
     }
 
+    @Public()
     @Get(':userId')
     findAll(@Param('userId', ParseIntPipe) userId: number) {
         return this.todosService.findAll(userId);
     }
 
     @Put(':id')
+    @Public()
     update(
         @Param('id', ParseIntPipe) id: number,
         @Body() updateTodoDto: UpdateTodoDto
