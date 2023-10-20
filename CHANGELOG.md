@@ -1,3 +1,10 @@
+## [1.6.2](https://github.com/artsiomshushkevich/todo-be/compare/v1.6.1...v1.6.2) (2023-10-20)
+
+
+### Bug Fixes
+
+* Fix todos endpoints ([05cf713](https://github.com/artsiomshushkevich/todo-be/commit/05cf713fcac2735aa3ed6bbc587fb4a035e00970))
+
 ## [1.6.1](https://github.com/artsiomshushkevich/todo-be/compare/v1.6.0...v1.6.1) (2023-10-20)
 
 
