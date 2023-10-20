@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/artsiomshushkevich/todo-be/compare/v1.6.0...v1.6.1) (2023-10-20)
+
+
+### Bug Fixes
+
+* Fix test on CI ([42107bd](https://github.com/artsiomshushkevich/todo-be/commit/42107bd12f8bd1d9e1e0f6d1d7f5029731a8b8a7))
+
 # [1.6.0](https://github.com/artsiomshushkevich/todo-be/compare/v1.5.0...v1.6.0) (2023-10-20)
 
 
