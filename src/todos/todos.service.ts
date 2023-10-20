@@ -1,8 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, DataSource } from 'typeorm';
-import { CreateTodoDto } from './dto/createTodo.dto';
-import { UpdateTodoDto } from './dto/updateTodo.dto';
+import {
+    CreateTodoRequestDto,
+    CreateTodoResponseDto
+} from './dtos/createTodo.dto';
+import { UpdateTodoDto } from './dtos/updateTodo.dto';
 import { Todo } from './entities/todo.entity';
 import { User } from '../users/users.entity';
 
@@ -14,13 +17,16 @@ export class TodosService {
         private dataSource: DataSource
     ) {}
 
-    async create(createTodoDto: CreateTodoDto) {
+    async create(
+        createTodoDto: CreateTodoRequestDto,
+        userId: number
+    ): Promise<CreateTodoResponseDto> {
         const user = await this.userRepository.findOne({
-            where: { id: createTodoDto.userId }
+            where: { id: userId }
         });
 
         if (!user) {
-            throw Error('user not found');
+            throw new BadRequestException();
         }
 
         const todo = new Todo();
@@ -28,7 +34,14 @@ export class TodosService {
         todo.isChecked = false;
         todo.user = user;
 
-        return this.todoRepository.save(todo);
+        const newTodo = await this.todoRepository.save(todo);
+
+        const newTodoDto = new CreateTodoResponseDto();
+        newTodoDto.id = newTodo.id;
+        newTodoDto.todo = newTodo.todo;
+        newTodoDto.isChecked = newTodo.isChecked;
+
+        return newTodoDto;
     }
 
     async findAll(userId: number) {

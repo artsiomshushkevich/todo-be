@@ -6,30 +6,32 @@ import {
     Put,
     Param,
     Delete,
-    ParseIntPipe
+    ParseIntPipe,
+    Request
 } from '@nestjs/common';
 import { TodosService } from './todos.service';
-import { CreateTodoDto } from './dto/createTodo.dto';
-import { UpdateTodoDto } from './dto/updateTodo.dto';
-import { Public } from '../auth/public.decorator';
+import { CreateTodoRequestDto } from './dtos/createTodo.dto';
+import { UpdateTodoDto } from './dtos/updateTodo.dto';
+import { AppRequest } from '../common/type/appRequest';
 
 @Controller('todos')
 export class TodosController {
     constructor(private readonly todosService: TodosService) {}
 
     @Post()
-    create(@Body() createTodoDto: CreateTodoDto) {
-        return this.todosService.create(createTodoDto);
+    create(
+        @Body() createTodoDto: CreateTodoRequestDto,
+        @Request() req: AppRequest
+    ) {
+        return this.todosService.create(createTodoDto, req.user.id);
     }
 
-    @Public()
-    @Get(':userId')
-    findAll(@Param('userId', ParseIntPipe) userId: number) {
-        return this.todosService.findAll(userId);
+    @Get()
+    findAll(@Request() req: AppRequest) {
+        return this.todosService.findAll(req.user.id);
     }
 
     @Put(':id')
-    @Public()
     update(
         @Param('id', ParseIntPipe) id: number,
         @Body() updateTodoDto: UpdateTodoDto
@@ -39,6 +41,6 @@ export class TodosController {
 
     @Delete(':id')
     remove(@Param('id', ParseIntPipe) id: number) {
-        return this.todosService.remove(+id);
+        return this.todosService.remove(id);
     }
 }

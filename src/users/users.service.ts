@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './users.entity';
-import { CreateUserDto } from './dto/createUser.dto';
+import { CreateUserDto } from './dtos/createUser.dto';
 
 @Injectable()
 export class UsersService {
@@ -16,7 +16,6 @@ export class UsersService {
     }
 
     findOneByUsername(username: string): Promise<User | null> {
-        console.log('!!!', username);
         return this.usersRepository.findOneBy({ username });
     }
 
