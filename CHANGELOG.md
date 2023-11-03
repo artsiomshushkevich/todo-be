@@ -1,3 +1,10 @@
+## [1.6.3](https://github.com/artsiomshushkevich/todo-be/compare/v1.6.2...v1.6.3) (2023-11-03)
+
+
+### Bug Fixes
+
+* Fix deps and make  / url public ([5e97973](https://github.com/artsiomshushkevich/todo-be/commit/5e97973e9593549cba9b8872866c47e28e6fd6a3))
+
 ## [1.6.2](https://github.com/artsiomshushkevich/todo-be/compare/v1.6.1...v1.6.2) (2023-10-20)
 
 
