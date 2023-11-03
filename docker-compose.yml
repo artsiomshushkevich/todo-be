@@ -28,6 +28,7 @@ services:
 
         volumes:
             - ./src/:/app/src
+
         command: npm run start:debug
 
     app-prod:

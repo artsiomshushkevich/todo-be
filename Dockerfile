@@ -9,6 +9,8 @@ RUN npm i
 
 COPY . .
 
+RUN npm run build
+
 EXPOSE 3000
 
 # phase for building bundle which will be used on env
@@ -17,8 +19,6 @@ FROM node:16 AS build-phase-2
 WORKDIR /app
 
 COPY --from=build-phase-1 /app/ /app/
-
-RUN npm run build
 
 RUN npm prune --omit=dev
 
