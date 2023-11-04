@@ -1,4 +1,9 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+    BadRequestException,
+    Injectable,
+    NotFoundException,
+    ForbiddenException
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, DataSource } from 'typeorm';
 import {
@@ -16,6 +21,18 @@ export class TodosService {
         @InjectRepository(User) private userRepository: Repository<User>,
         private dataSource: DataSource
     ) {}
+
+    private async checkTodoBelongsToUser(id: number, userId: number) {
+        const todo = await this.findById(id);
+
+        if (!todo) {
+            throw new NotFoundException();
+        }
+
+        if (todo.user.id !== userId) {
+            throw new ForbiddenException();
+        }
+    }
 
     async create(
         createTodoDto: CreateTodoRequestDto,
@@ -44,22 +61,37 @@ export class TodosService {
         return newTodoDto;
     }
 
-    async findAll(userId: number) {
+    findAll(userId: number) {
         return this.todoRepository.find({ where: { user: { id: userId } } });
     }
 
-    update(id: number, updateTodoDto: UpdateTodoDto) {
-        const { isChecked, todo } = updateTodoDto;
-
-        return this.dataSource
-            .createQueryBuilder()
-            .update(Todo)
-            .set({ isChecked, todo })
-            .where('id = :id', { id: id })
-            .execute();
+    private findById(id: number) {
+        return this.todoRepository.findOne({
+            where: { id },
+            relations: { user: true }
+        });
     }
 
-    remove(id: number) {
-        return this.todoRepository.delete(id);
+    async update(id: number, userId: number, updateTodoDto: UpdateTodoDto) {
+        await this.checkTodoBelongsToUser(id, userId);
+
+        const { isChecked, todo: updatedTodo } = updateTodoDto;
+
+        await this.dataSource
+            .createQueryBuilder()
+            .update(Todo)
+            .set({ isChecked, todo: updatedTodo })
+            .where('id = :id', { id: id })
+            .execute();
+
+        return true;
+    }
+
+    async remove(id: number, userId: number) {
+        await this.checkTodoBelongsToUser(id, userId);
+
+        await this.todoRepository.delete(id);
+
+        return true;
     }
 }

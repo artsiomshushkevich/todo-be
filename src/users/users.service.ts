@@ -19,10 +19,6 @@ export class UsersService {
         return this.usersRepository.findOneBy({ username });
     }
 
-    remove(id: number) {
-        return this.usersRepository.delete(id);
-    }
-
     create(user: CreateUserDto): Promise<User> {
         return this.usersRepository.save(user);
     }

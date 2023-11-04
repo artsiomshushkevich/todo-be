@@ -34,13 +34,14 @@ export class TodosController {
     @Put(':id')
     update(
         @Param('id', ParseIntPipe) id: number,
-        @Body() updateTodoDto: UpdateTodoDto
+        @Body() updateTodoDto: UpdateTodoDto,
+        @Request() req: AppRequest
     ) {
-        return this.todosService.update(id, updateTodoDto);
+        return this.todosService.update(id, req.user.id, updateTodoDto);
     }
 
     @Delete(':id')
-    remove(@Param('id', ParseIntPipe) id: number) {
-        return this.todosService.remove(id);
+    remove(@Param('id', ParseIntPipe) id: number, @Request() req: AppRequest) {
+        return this.todosService.remove(id, req.user.id);
     }
 }
