@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/artsiomshushkevich/todo-be/compare/v1.6.4...v1.7.0) (2023-11-04)
+
+
+### Features
+
+* Add auth to endpoints, update make file, fix cascades ([91fc4f9](https://github.com/artsiomshushkevich/todo-be/commit/91fc4f9e28e8a9fde7a9b5d5e9bc45119469255b))
+
 ## [1.6.4](https://github.com/artsiomshushkevich/todo-be/compare/v1.6.3...v1.6.4) (2023-11-03)
 
 
