@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/artsiomshushkevich/todo-be/compare/v1.7.0...v1.8.0) (2023-11-07)
+
+
+### Features
+
+* Add color to todo with migrations ([69535fb](https://github.com/artsiomshushkevich/todo-be/commit/69535fbe17856781229c42d760f3d98032583425))
+
 # [1.7.0](https://github.com/artsiomshushkevich/todo-be/compare/v1.6.4...v1.7.0) (2023-11-04)
 
 
