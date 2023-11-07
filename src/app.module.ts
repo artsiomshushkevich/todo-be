@@ -18,7 +18,6 @@ import typeorm from './common/config/typeorm';
             imports: [ConfigModule],
             inject: [ConfigService],
             useFactory: async (configService: ConfigService) => {
-                console.log('&&&&&', { ...configService.get('typeorm') });
                 return {
                     ...configService.get('typeorm'),
                     autoLoadEntities: true

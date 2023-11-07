@@ -12,9 +12,6 @@ export class Todo {
     @Column()
     isChecked: boolean;
 
-    @Column()
-    color: string;
-
     @ManyToOne(() => User, (user) => user.todos, {
         onDelete: 'CASCADE'
     })
