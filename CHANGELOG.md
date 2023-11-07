@@ -1,3 +1,10 @@
+## [1.9.1](https://github.com/artsiomshushkevich/todo-be/compare/v1.9.0...v1.9.1) (2023-11-07)
+
+
+### Bug Fixes
+
+* Fix debugger ([4b7d293](https://github.com/artsiomshushkevich/todo-be/commit/4b7d29352cb59e03fbb9ac8c5de1b96834fb95c2))
+
 # [1.9.0](https://github.com/artsiomshushkevich/todo-be/compare/v1.8.0...v1.9.0) (2023-11-07)
 
 
