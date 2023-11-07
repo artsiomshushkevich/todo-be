@@ -28,7 +28,8 @@ services:
             - RUN_MIGRATIONS_ON_STARTUP=${RUN_MIGRATIONS_ON_STARTUP}
 
         volumes:
-            - ./src/:/app/src
+            - .:/app
+            - /app/node_modules
 
         command: npm run start:debug
 

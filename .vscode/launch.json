@@ -7,6 +7,7 @@
             "name": "Debug: todo-be",
             "remoteRoot": "/app",
             "localRoot": "${workspaceFolder}",
+            "sourceMaps": true,
             "port": 9229,
             "restart": true,
             "address": "0.0.0.0",
