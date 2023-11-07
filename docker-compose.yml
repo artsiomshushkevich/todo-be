@@ -25,6 +25,7 @@ services:
             - NODE_ENV=${NODE_ENV}
             - SALT_ROUNDS=${SALT_ROUNDS}
             - JWT_SECRET=${JWT_SECRET}
+            - RUN_MIGRATIONS_ON_STARTUP=${RUN_MIGRATIONS_ON_STARTUP}
 
         volumes:
             - ./src/:/app/src
@@ -51,6 +52,7 @@ services:
             - NODE_ENV=${NODE_ENV}
             - SALT_ROUNDS=${SALT_ROUNDS}
             - JWT_SECRET=${JWT_SECRET}
+            - RUN_MIGRATIONS_ON_STARTUP=${RUN_MIGRATIONS_ON_STARTUP}
 
     db-dev:
         profiles:

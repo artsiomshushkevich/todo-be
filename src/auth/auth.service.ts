@@ -3,8 +3,8 @@ import { JwtService } from '@nestjs/jwt';
 import { hash, compare } from 'bcrypt';
 import { UsersService } from '../users/users.service';
 import { CreateUserDto } from '../users/dtos/createUser.dto';
-import { AccessTokenResponse } from './types/accessTokenResponse';
-import { UserInRequest } from '../common/type/appRequest';
+import { AccessTokenResponse } from './dtos/accessTokenResponse.dto';
+import { UserInRequest } from '../common/types/appRequest';
 
 @Injectable()
 export class AuthService {

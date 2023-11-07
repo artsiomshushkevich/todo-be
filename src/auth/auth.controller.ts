@@ -10,7 +10,7 @@ import {
 import { AuthService } from './auth.service';
 import { CreateUserDto } from '../users/dtos/createUser.dto';
 import { LocalAuthGuard } from './localAuth.guard';
-import { AppRequest } from '../common/type/appRequest';
+import { AppRequest } from '../common/types/appRequest';
 import { Public } from './public.decorator';
 
 @Controller('auth')

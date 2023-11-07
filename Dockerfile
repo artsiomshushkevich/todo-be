@@ -28,8 +28,8 @@ FROM gcr.io/distroless/nodejs16-debian11 AS main
 WORKDIR /app
 
 COPY --from=build-phase-2 /app/node_modules/ /app/node_modules/ 
-COPY --from=build-phase-2 /app/dist/ /app/
+COPY --from=build-phase-2 /app/dist/ /app/dist/
 
 EXPOSE 3000
 
-CMD ["main.js"]
+CMD ["dist/main.js"]

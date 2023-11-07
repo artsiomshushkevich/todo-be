@@ -6,26 +6,22 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { TodosModule } from './todos/todos.module';
 import { AuthModule } from './auth/auth.module';
+import typeorm from './common/config/typeorm';
 
 @Module({
     imports: [
         ConfigModule.forRoot({
-            isGlobal: true
+            isGlobal: true,
+            load: [typeorm]
         }),
         TypeOrmModule.forRootAsync({
             imports: [ConfigModule],
             inject: [ConfigService],
-            useFactory: (configService: ConfigService) => {
+            useFactory: async (configService: ConfigService) => {
+                console.log('&&&&&', { ...configService.get('typeorm') });
                 return {
-                    type: 'postgres',
-                    port: +configService.get('POSTGRES_PORT'),
-                    username: configService.get('POSTGRES_USER'),
-                    password: configService.get('POSTGRES_PASSWORD'),
-                    database: configService.get('POSTGRES_DB'),
-                    host: configService.get('POSTGRES_HOST'),
-                    synchronize: true,
-                    autoLoadEntities: true,
-                    logging: true
+                    ...configService.get('typeorm'),
+                    autoLoadEntities: true
                 };
             }
         }),

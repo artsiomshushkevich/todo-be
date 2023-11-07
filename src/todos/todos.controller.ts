@@ -12,7 +12,7 @@ import {
 import { TodosService } from './todos.service';
 import { CreateTodoRequestDto } from './dtos/createTodo.dto';
 import { UpdateTodoDto } from './dtos/updateTodo.dto';
-import { AppRequest } from '../common/type/appRequest';
+import { AppRequest } from '../common/types/appRequest';
 
 @Controller('todos')
 export class TodosController {
