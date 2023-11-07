@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/artsiomshushkevich/todo-be/compare/v1.8.0...v1.9.0) (2023-11-07)
+
+
+### Features
+
+* Remove color from todo, remove logs, fix npm command ([297f713](https://github.com/artsiomshushkevich/todo-be/commit/297f713d1b86f63b4ff3d596d7ce98e59815d46f))
+
 # [1.8.0](https://github.com/artsiomshushkevich/todo-be/compare/v1.7.0...v1.8.0) (2023-11-07)
 
 
