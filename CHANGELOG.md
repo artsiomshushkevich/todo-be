@@ -1,3 +1,10 @@
+## [1.9.2](https://github.com/artsiomshushkevich/todo-be/compare/v1.9.1...v1.9.2) (2023-11-28)
+
+
+### Bug Fixes
+
+* Enable cors ([79a9816](https://github.com/artsiomshushkevich/todo-be/commit/79a98162575bcc53c4e87b5d58525489b58f3de2))
+
 ## [1.9.1](https://github.com/artsiomshushkevich/todo-be/compare/v1.9.0...v1.9.1) (2023-11-07)
 
 
